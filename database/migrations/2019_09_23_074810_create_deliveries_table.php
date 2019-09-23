@@ -18,8 +18,8 @@ class CreateDeliveriesTable extends Migration
             $table->unsignedInteger('car_id')->comment('车辆id');
             $table->unsignedInteger('guest_id')->comment('来宾信息id');
             $table->unsignedInteger('greeter_id')->comment('联系人id');
-            $table->timestamp('start_time')->comment('出发时间');
-            $table->time('back_time')->comment('返回时间');
+            $table->timestamp('start_time')->comment('出发时间')->default("2019-09-23 00:00:00");
+            $table->time('back_time')->comment('返回时间')->default("2019-09-23 00:00:00");
             $table->timestamps();
         });
     }

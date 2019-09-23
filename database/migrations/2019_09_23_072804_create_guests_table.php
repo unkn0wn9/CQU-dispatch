@@ -18,8 +18,8 @@ class CreateGuestsTable extends Migration
             $table->string('company')->comment('来宾单位');
             $table->unsignedInteger('level')->comment('来宾最高级别');
             $table->unsignedInteger('retinues')->comment('随行人数');
-            $table->timestamp('arrive_datetime')->comment('到达时间');
-            $table->timestamp('leave_datetime')->comment('离开时间');
+            $table->timestamp('arrive_datetime')->comment('到达时间')->default("2019-09-23 00:00:00");
+            $table->timestamp('leave_datetime')->comment('离开时间')->default("2019-09-23 00:00:00");
             $table->string('arrive_flight')->comment('到达航班');
             $table->string('leave_flight')->comment('离开航班');
             $table->string('hotel')->comment('入住酒店');
