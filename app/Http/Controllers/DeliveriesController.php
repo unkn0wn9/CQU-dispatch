@@ -40,7 +40,6 @@ class DeliveriesController extends Controller
         $res = Validator::make($request->all(), [
             'car_id'    =>  'required|numeric',
             'guest_id'  =>  'required|numeric',
-            'greeter_id'    =>  'required|numeric',
             'start_time'    =>  'required',
             'back_time' =>  'required'
         ]);
@@ -50,7 +49,6 @@ class DeliveriesController extends Controller
         $delivery = Delivery::create([
             'car_id'    =>  $request['car_id'],
             'guest_id'  =>  $request['guest_id'],
-            'greeter_id'    =>  $request['greeter_id'],
             'start_time'    =>  $request['start_time'],
             'back_time' =>  $request['back_time']
         ]);
@@ -91,7 +89,6 @@ class DeliveriesController extends Controller
         $res = Validator::make($request->all(), [
             'car_id'    =>  'required|numeric',
             'guest_id'  =>  'required|numeric',
-            'greeter_id'    =>  'required|numeric',
             'start_time'    =>  'required',
             'back_time' =>  'required'
         ]);
@@ -103,7 +100,6 @@ class DeliveriesController extends Controller
             [
             'car_id'    =>  $request['car_id'],
             'guest_id'  =>  $request['guest_id'],
-            'greeter_id'    =>  $request['greeter_id'],
             'start_time'    =>  $request['start_time'],
             'back_time' =>  $request['back_time']
             ]
