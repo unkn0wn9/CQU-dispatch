@@ -15,7 +15,7 @@ class GuestsController extends Controller
      */
     public function index()
     {
-        return Guest::all();
+        return response()->json(Guest::all(),200);
     }
 
     /**
@@ -69,7 +69,7 @@ class GuestsController extends Controller
             'greeter_company'   =>  $request['greeter_company'],
             'greeter_tel'   =>  $request['greeter_tel']
         ]);
-        return response()->json(['success' => $guest], 200);
+        return response()->json($guest, 200);
     }
 
     /**
@@ -141,7 +141,7 @@ class GuestsController extends Controller
                 'greeter_tel'   =>  $request['greeter_tel']
             ]
         );
-        return response()->json(['success' => $guest], 200);
+        return response()->json($guest, 200);
     }
 
     /**
@@ -153,6 +153,6 @@ class GuestsController extends Controller
     public function destroy(Guest $guest)
     {
         $guest->delete();
-        return response()->json(['success' => $guest], 200);
+        return response()->json($guest, 200);
     }
 }

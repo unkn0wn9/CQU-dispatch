@@ -16,7 +16,7 @@ class DeliveriesController extends Controller
      */
     public function index()
     {
-        return Delivery::all();
+        return response()->json(Delivery::all(),200);
     }
 
     /**
@@ -54,7 +54,7 @@ class DeliveriesController extends Controller
             'start_time'    =>  $request['start_time'],
             'back_time' =>  $request['back_time']
         ]);
-        return response()->json(['success' => $delivery], 200);
+        return response()->json($delivery, 200);
     }
 
     /**
@@ -108,7 +108,7 @@ class DeliveriesController extends Controller
             'back_time' =>  $request['back_time']
             ]
         );
-        return response()->json(['success' => $delivery], 200);
+        return response()->json($delivery, 200);
     }
 
     /**
@@ -120,6 +120,6 @@ class DeliveriesController extends Controller
     public function destroy(Delivery $delivery)
     {
         $delivery->delete();
-        return response()->json(['success' => $delivery], 200);
+        return response()->json($delivery, 200);
     }
 }
