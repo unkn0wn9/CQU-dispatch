@@ -38,7 +38,7 @@ class GuestsController extends Controller
     {
         $res = Validator::make($request->all(), [
             'company' => 'required|string',
-            'level' => 'required|numeric',
+            'level' => 'required|string',
             'retinues'  => 'required|numeric',
             'arrive_datetime'   => 'required',
             'leave_datetime'    => 'required',
@@ -95,7 +95,7 @@ class GuestsController extends Controller
     {
         $res = Validator::make($request->all(), [
             'company' => 'required|string',
-            'level' => 'required|numeric',
+            'level' => 'required|string',
             'retinues'  => 'required|numeric',
             'arrive_datetime'   => 'required',
             'leave_datetime'    => 'required',
