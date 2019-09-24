@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="222acf80-e8b1-4aa6-8735-e63a80966c00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GreetersController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GuestsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GuestsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Greeter.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Guest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Guest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_23_072804_create_guests_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_23_072804_create_guests_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_23_073458_create_greeters_table.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +156,7 @@
       <option name="presentableId" value="Default" />
       <updated>1569222518473</updated>
       <workItem from="1569222532348" duration="11403000" />
-      <workItem from="1569290691219" duration="866000" />
+      <workItem from="1569290691219" duration="1596000" />
     </task>
     <servers />
   </component>

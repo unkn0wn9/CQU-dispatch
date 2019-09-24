@@ -23,6 +23,11 @@ class CreateGuestsTable extends Migration
             $table->string('arrive_flight')->comment('到达航班');
             $table->string('leave_flight')->comment('离开航班');
             $table->string('hotel')->comment('入住酒店');
+            $table->string('greeter_number')->comment('联系人工号');
+            $table->string('greeter_name')->comment('联系人姓名');
+            $table->unsignedInteger('greeter_sex')->comment('联系人性别 1为男性 0位女性'); // 1 male 0 female
+            $table->string('greeter_company')->comment('联系人单位');
+            $table->string('greeter_tel')->comment('联系人电话');
             $table->timestamps();
         });
     }

@@ -44,7 +44,12 @@ class GuestsController extends Controller
             'leave_datetime'    => 'required',
             'arrive_flight' => 'required|string',
             'leave_flight'  => 'required|string',
-            'hotel' => 'required|string'
+            'hotel' => 'required|string',
+            'greeter_number'    => 'required|numeric',
+            'greeter_name'  =>  'required|string',
+            'greeter_sex'   =>  'required|numeric|between:0,1',
+            'greeter_company'   => 'required|string',
+            'greeter_tel'   =>  'required|numeric'
         ]);
         if ($res->fails()){
             return response()->json(['error' => 'Bad parameter'], 400);
@@ -57,7 +62,12 @@ class GuestsController extends Controller
             'leave_datetime'    => $request['leave_datetime'],
             'arrive_flight' => $request['arrive_flight'],
             'leave_flight'  => $request['leave_flight'],
-            'hotel' => $request['hotel']
+            'hotel' => $request['hotel'],
+            'greeter_number'    =>  $request['greeter_number'],
+            'greeter_name'  =>  $request['greeter_name'],
+            'greeter_sex'   =>  $request['greeter_sex'],
+            'greeter_company'   =>  $request['greeter_company'],
+            'greeter_tel'   =>  $request['greeter_tel']
         ]);
         return response()->json(['success' => $guest], 200);
     }
@@ -101,7 +111,12 @@ class GuestsController extends Controller
             'leave_datetime'    => 'required',
             'arrive_flight' => 'required|string',
             'leave_flight'  => 'required|string',
-            'hotel' => 'required|string'
+            'hotel' => 'required|string',
+            'greeter_number'    => 'required|numeric',
+            'greeter_name'  =>  'required|string',
+            'greeter_sex'   =>  'required|numeric|between:0,1',
+            'greeter_company'   => 'required|string',
+            'greeter_tel'   =>  'required|numeric'
         ]);
         if ($res->fails()){
             return response()->json(['error' => 'Bad parameter'], 400);
@@ -111,14 +126,19 @@ class GuestsController extends Controller
                 'id'    =>  $guest->id,
             ],
             [
-            'company' => $request['company'],
-            'level' => $request['level'],
-            'retinues'  => $request['retinues'],
-            'arrive_datetime'   => $request['arrive_datetime'],
-            'leave_datetime'    => $request['leave_datetime'],
-            'arrive_flight' => $request['arrive_flight'],
-            'leave_flight'  => $request['leave_flight'],
-            'hotel' => $request['hotel']
+                'company' => $request['company'],
+                'level' => $request['level'],
+                'retinues'  => $request['retinues'],
+                'arrive_datetime'   => $request['arrive_datetime'],
+                'leave_datetime'    => $request['leave_datetime'],
+                'arrive_flight' => $request['arrive_flight'],
+                'leave_flight'  => $request['leave_flight'],
+                'hotel' => $request['hotel'],
+                'greeter_number'    =>  $request['greeter_number'],
+                'greeter_name'  =>  $request['greeter_name'],
+                'greeter_sex'   =>  $request['greeter_sex'],
+                'greeter_company'   =>  $request['greeter_company'],
+                'greeter_tel'   =>  $request['greeter_tel']
             ]
         );
         return response()->json(['success' => $guest], 200);
