@@ -16,7 +16,7 @@ class CreateCarsTable extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('brand')->comment('车辆品牌');
-            $table->string('license')->comment('车牌号');
+            $table->string('license')->unique()->comment('车牌号');
             $table->string('color')->comment('车辆颜色');
             $table->string('driver_name')->comment('司机姓名');
             $table->unsignedInteger('driver_sex')->comment('司机性别 1为男性 0为女性'); // 1 male 0 female

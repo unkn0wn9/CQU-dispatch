@@ -91,7 +91,7 @@ class CarsController extends Controller
     {
         $res = Validator::make($request->all(), [
             'brand' =>  'required|string',
-            'license'   =>  'required|string',
+            'license'   =>  'required|string|unique:cars,license',
             'color' =>  'required|string',
             'driver_name'   =>  'required|string',
             'driver_sex'    =>  'required|numeric|between:0,1',
