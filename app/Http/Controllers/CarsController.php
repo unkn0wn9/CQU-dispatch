@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CarsController extends Controller
@@ -13,9 +14,55 @@ class CarsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Car::all();
+        $res = Validator::make($request->all(), [
+            'brand' =>  'string',
+            'query_type'    =>  'required|string',
+        ]);
+        if ($res->fails()){
+            return response()->json(['error' => 'Bad parameter'], 400);
+        }
+
+        switch ($request['query_type']){
+            case 'all':
+                $results = Car::all();
+                break;
+            case 'time':
+                if(!($request->has('start_time') && $request->has('end_time') && $request->has('brand'))){
+                    return response()->json(['error' => 'Bad parameter'], 400);
+                }
+                $brand = $request['brand'];
+                $st = $request['start_time'];
+                $et = $request['end_time'];
+                $cars = DB::table('cars')->get()->where('brand',$brand);
+                $deliveries = DB::table('deliveries')->where([
+                    ['start_time','<=',$st],
+                    ['back_time','>=',$st],
+                ])->orWhere([
+                    ['start_time','>=',$st],
+                    ['back_time','<=',$et],
+                ])->orWhere([
+                    ['start_time','<=',$et],
+                    ['back_time','>=',$et],
+                ])->get();
+                $results = [];
+                foreach ($cars as $car){
+                    $flag = false;
+                    foreach ($deliveries as $delivery){
+                        if ($car->id == $delivery->id){
+                            $flag = true;
+                        }
+                    }
+                    if(!$flag){
+                        array_push($results,$car);
+                    }
+                }
+                break;
+            default:
+                $results = Car::all();
+        }
+        return  response()->json($results, 200);
     }
 
     /**
@@ -55,7 +102,7 @@ class CarsController extends Controller
             'driver_sex'   =>  $request['driver_sex'],
             'driver_tel'   =>  $request['driver_tel'],
         ]);
-        return response()->json(['success' => $car], 200);
+        return response()->json($car, 200);
     }
 
     /**
@@ -113,7 +160,7 @@ class CarsController extends Controller
                 'driver_tel'   =>  $request['driver_tel'],
             ]
         );
-        return response()->json(['success' => $car], 200);
+        return response()->json($car, 200);
     }
 
     /**
@@ -125,6 +172,6 @@ class CarsController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
-        return response()->json(['success' => $car], 200);
+        return response()->json($car, 200);
     }
 }
