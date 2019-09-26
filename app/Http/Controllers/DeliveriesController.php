@@ -16,7 +16,14 @@ class DeliveriesController extends Controller
      */
     public function index()
     {
-        return response()->json(Delivery::all(),200);
+        $deliveries = Delivery::all();
+        foreach ($deliveries as $delivery){
+            $delivery->car_info = DB::table('cars')->where('id', $delivery->car_id)->first();
+            $delivery->guest_info = DB::table('guests')->where('id', $delivery->guest_id)->first();
+            unset($delivery->car_id);
+            unset($delivery->guest_id);
+        }
+        return response()->json($deliveries,200);
     }
 
     /**
