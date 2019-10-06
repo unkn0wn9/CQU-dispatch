@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="222acf80-e8b1-4aa6-8735-e63a80966c00" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DeliveriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DeliveriesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_23_072804_create_guests_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_23_072804_create_guests_table.php" afterDir="false" />
-    </list>
+    <list default="true" id="222acf80-e8b1-4aa6-8735-e63a80966c00" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +152,7 @@
       <workItem from="1569314418570" duration="747000" />
       <workItem from="1569460450700" duration="995000" />
       <workItem from="1570338656418" duration="612000" />
-      <workItem from="1570364090735" duration="1459000" />
+      <workItem from="1570364090735" duration="1641000" />
     </task>
     <servers />
   </component>

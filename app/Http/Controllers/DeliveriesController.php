@@ -57,7 +57,7 @@ class DeliveriesController extends Controller
 
         //修改宾客派车
         DB::table('guests')->where('id', $request['guest_id'])->update(['isDelivered'   =>  1]);
-        
+
         $delivery = Delivery::create([
             'car_id'    =>  $request['car_id'],
             'guest_id'  =>  $request['guest_id'],
@@ -127,6 +127,7 @@ class DeliveriesController extends Controller
      */
     public function destroy(Delivery $delivery)
     {
+        DB::table('guests')->where('id', $delivery->guest_id)->update(['isDelivered'   =>  0]);
         $delivery->delete();
         return response()->json($delivery, 200);
     }
