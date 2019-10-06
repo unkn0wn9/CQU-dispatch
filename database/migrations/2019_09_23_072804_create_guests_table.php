@@ -28,6 +28,7 @@ class CreateGuestsTable extends Migration
             $table->unsignedInteger('greeter_sex')->comment('联系人性别 1为男性 0位女性'); // 1 male 0 female
             $table->string('greeter_company')->comment('联系人单位');
             $table->string('greeter_tel')->comment('联系人电话');
+            $table->unsignedBigInteger('isDelivered')->comment('是否已经派车')->default(0);
             $table->timestamps();
         });
     }

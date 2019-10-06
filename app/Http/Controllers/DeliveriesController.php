@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\Guest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -53,6 +54,10 @@ class DeliveriesController extends Controller
         if ($res->fails()){
             return response()->json(['error' => 'Bad parameter'], 400);
         }
+
+        //修改宾客派车
+        DB::table('guests')->where('id', $request['guest_id'])->update(['isDelivered'   =>  1]);
+        
         $delivery = Delivery::create([
             'car_id'    =>  $request['car_id'],
             'guest_id'  =>  $request['guest_id'],
