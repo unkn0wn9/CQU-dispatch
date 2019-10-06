@@ -171,6 +171,7 @@ class CarsController extends Controller
      */
     public function destroy(Car $car)
     {
+        DB::table('deliveries')->where('car_id',$car->id)->delete();
         $car->delete();
         return response()->json($car, 200);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class GuestsController extends Controller
@@ -152,6 +153,7 @@ class GuestsController extends Controller
      */
     public function destroy(Guest $guest)
     {
+        DB::table('deliveries')->where('guest_id',$guest->id)->delete();
         $guest->delete();
         return response()->json($guest, 200);
     }
