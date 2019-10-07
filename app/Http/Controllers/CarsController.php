@@ -38,11 +38,16 @@ class CarsController extends Controller
                 $cars = DB::table('cars')->get()->where('brand',$brand);
                 $deliveries = DB::table('deliveries')->where([
                     ['start_time','<=',$st],
-                    ['back_time','>=',$st],
+                    ['back_time','>=',$et],
                 ])->orWhere([
                     ['start_time','>=',$st],
                     ['back_time','<=',$et],
                 ])->orWhere([
+                    ['start_time','<=',$st],
+                    ['back_time','>=',$st],
+                    ['back_time','<=',$et],
+                ])->orWhere([
+                    ['start_time','>=',$st],
                     ['start_time','<=',$et],
                     ['back_time','>=',$et],
                 ])->get();
@@ -50,7 +55,7 @@ class CarsController extends Controller
                 foreach ($cars as $car){
                     $flag = false;
                     foreach ($deliveries as $delivery){
-                        if ($car->id == $delivery->id){
+                        if ($car->id == $delivery->car_id){
                             $flag = true;
                         }
                     }
