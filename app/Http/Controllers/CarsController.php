@@ -176,6 +176,10 @@ class CarsController extends Controller
      */
     public function destroy(Car $car)
     {
+        $deliveries = DB::table('deliveries')->where('car_id',$car->id)->get();
+        foreach ($deliveries as $delivery){
+            DB::table('guests')->where('id',  $delivery->guest_id)->update(['isDelivered'   =>  0]);
+        }
         DB::table('deliveries')->where('car_id',$car->id)->delete();
         $car->delete();
         return response()->json($car, 200);
