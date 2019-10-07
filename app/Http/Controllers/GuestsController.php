@@ -40,17 +40,15 @@ class GuestsController extends Controller
         $res = Validator::make($request->all(), [
             'company' => 'required|string',
             'level' => 'required|string',
-            'retinues'  => 'required|numeric',
-            'arrive_datetime'   => 'required',
-            'leave_datetime'    => 'required',
-            'arrive_flight' => 'required|string',
-            'leave_flight'  => 'required|string',
-            'hotel' => 'required|string',
-            'greeter_number'    => 'required|numeric',
-            'greeter_name'  =>  'required|string',
-            'greeter_sex'   =>  'required|numeric|between:0,1',
-            'greeter_company'   => 'required|string',
-            'greeter_tel'   =>  'required|numeric'
+            'retinues'  => 'numeric',
+            'arrive_flight' => 'string',
+            'leave_flight'  => 'string',
+            'hotel' => 'string',
+            'greeter_number'    => 'numeric',
+            'greeter_name'  =>  'string',
+            'greeter_sex'   =>  'numeric|between:0,1',
+            'greeter_company'   => 'string',
+            'greeter_tel'   =>  'numeric'
         ]);
         if ($res->fails()){
             return response()->json(['error' => 'Bad parameter'], 400);
@@ -107,17 +105,15 @@ class GuestsController extends Controller
         $res = Validator::make($request->all(), [
             'company' => 'required|string',
             'level' => 'required|string',
-            'retinues'  => 'required|numeric',
-            'arrive_datetime'   => 'required',
-            'leave_datetime'    => 'required',
-            'arrive_flight' => 'required|string',
-            'leave_flight'  => 'required|string',
-            'hotel' => 'required|string',
-            'greeter_number'    => 'required|numeric',
-            'greeter_name'  =>  'required|string',
-            'greeter_sex'   =>  'required|numeric|between:0,1',
-            'greeter_company'   => 'required|string',
-            'greeter_tel'   =>  'required|numeric'
+            'retinues'  => 'numeric',
+            'arrive_flight' => 'string',
+            'leave_flight'  => 'string',
+            'hotel' => 'string',
+            'greeter_number'    => 'numeric',
+            'greeter_name'  =>  'string',
+            'greeter_sex'   =>  'numeric|between:0,1',
+            'greeter_company'   => 'string',
+            'greeter_tel'   =>  'numeric'
         ]);
         if ($res->fails()){
             return response()->json(['error' => 'Bad parameter'], 400);
