@@ -38,7 +38,7 @@ class GuestsController extends Controller
     public function store(Request $request)
     {
         $res = Validator::make($request->all(), [
-            'company' => 'required|string',
+            'company' => 'required|string|unique:guests,company',
             'level' => 'required|string',
             'retinues'  => 'numeric',
             'arrive_flight' => 'string',
