@@ -15,6 +15,31 @@ class DeliveriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private function deliveryCheck($car, $st, $et)
+    {
+        $deliveries = DB::table('deliveries')->where([
+            ['start_time','<=',$st],
+            ['back_time','>=',$et],
+        ])->orWhere([
+            ['start_time','>=',$st],
+            ['back_time','<=',$et],
+        ])->orWhere([
+            ['start_time','<=',$st],
+            ['back_time','>=',$st],
+            ['back_time','<=',$et],
+        ])->orWhere([
+            ['start_time','>=',$st],
+            ['start_time','<=',$et],
+            ['back_time','>=',$et],
+        ])->get();
+        foreach ($deliveries as $delivery){
+            if ($car == $delivery->car_id){
+                return false;
+            }
+        }
+        return true;
+
+    }
     public function index()
     {
         $deliveries = Delivery::all();
@@ -58,13 +83,20 @@ class DeliveriesController extends Controller
         //修改宾客派车
         DB::table('guests')->where('id', $request['guest_id'])->update(['isDelivered'   =>  1]);
 
-        $delivery = Delivery::create([
-            'car_id'    =>  $request['car_id'],
-            'guest_id'  =>  $request['guest_id'],
-            'start_time'    =>  $request['start_time'],
-            'back_time' =>  $request['back_time']
-        ]);
-        return response()->json($delivery, 200);
+        if($this->deliveryCheck($request['car_id'], $request['start_time'], $request['back_time']))
+        {
+            $delivery = Delivery::create([
+                'car_id'    =>  $request['car_id'],
+                'guest_id'  =>  $request['guest_id'],
+                'start_time'    =>  $request['start_time'],
+                'back_time' =>  $request['back_time']
+            ]);
+            return response()->json($delivery, 200);
+        }
+        else{
+            return response()->json(['error' => 'Bad parameter'], 400);
+        }
+
     }
 
     /**
@@ -107,16 +139,22 @@ class DeliveriesController extends Controller
         if ($res->fails()){
             return response()->json(['error' => 'Bad parameter'], 400);
         }
-        Delivery::updateOrCreate(
-            ['id'   =>  $delivery->id],
-            [
-            'car_id'    =>  $request['car_id'],
-            'guest_id'  =>  $request['guest_id'],
-            'start_time'    =>  $request['start_time'],
-            'back_time' =>  $request['back_time']
-            ]
-        );
-        return response()->json($delivery, 200);
+        if($this->deliveryCheck($request['car_id'], $request['start_time'], $request['back_time']))
+        {
+            Delivery::updateOrCreate(
+                ['id'   =>  $delivery->id],
+                [
+                    'car_id'    =>  $request['car_id'],
+                    'guest_id'  =>  $request['guest_id'],
+                    'start_time'    =>  $request['start_time'],
+                    'back_time' =>  $request['back_time']
+                ]
+            );
+            return response()->json($delivery, 200);
+        }
+        else{
+            return response()->json(['error' => 'Bad parameter'], 400);
+        }
     }
 
     /**
